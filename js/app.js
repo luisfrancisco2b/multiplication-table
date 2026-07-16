@@ -1,4 +1,4 @@
-// Seleção de Elementos
+// Element Selection
 const multiplicationForm = document.querySelector("#multiplication-form");
 const numberInput = document.querySelector("#number");
 const multiplicationInput = document.querySelector("#multiplicator");
@@ -9,43 +9,43 @@ const multiplicationTable = document.querySelector(
 
 const spanNumber = document.querySelector("#multiplication-title span");
 
-// Funções
+// Functions
 const createTable = (number, multiplicatorNumber) => {
-  // Limpa o conteúdo da tabela atual antes de gerar uma nova
+  // Clear the current table content before generating a new one
   multiplicationTable.innerHTML = "";
 
-  // Laço de repetição que rodar de 1 até o limite do  multiplicador escolhido
+  // Loop to iterate from 1 up to the chosen multiplicator limit
   for (let i = 1; i <= multiplicatorNumber; i++) {
-    // Calcula o resultado da multiplicação atual
+    // Calculate the result of the current multiplication
     const result = number * i;
 
-    // Cria a estrutura HTML da linha em formato de string/texto
+    // Create the row HTML structure as a string template
     const template = `<div class="row">
       <div class="operation"> ${number} x ${i} =</div>
       <div class="result"> ${result}</div>
     </div>`;
 
-    // Insere o template de texto diretamente no final da tabela por meio do beforeend
-    // O navegador converte o texto HTML e coloca na tela
+    // Insert the template string directly at the end of the table
+    // The browser converts the text to HTML and renders it on screen
     multiplicationTable.insertAdjacentHTML("beforeend", template);
   }
   spanNumber.textContent = number;
 };
 
-// Eventos
+// Events
 multiplicationForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  // Número a ser multiplicado
-  // O "+" converte um dado do tipo string para number
+  // Number to be multiplied
+  // The "+" converts the string value to a number
   const multiplicationNumber = +numberInput.value;
 
-  // Quantidade de vezes que o número vai ser multiplicado
+  // Number of times the value will be multiplied
   const multiplicatorNumber = +multiplicationInput.value;
 
-  // Validação para verificar se os números estão corretos
+  // Validation to check if both numbers are valid
   if (!multiplicationNumber || !multiplicatorNumber) return;
 
-  // Pega a função e passa os valores que o usuário digitou no input
+  // Call the function passing the values entered by the user
   createTable(multiplicationNumber, multiplicatorNumber);
 });
